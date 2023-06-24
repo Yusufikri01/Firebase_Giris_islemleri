@@ -1,6 +1,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_logins/Pages/LoginPage.dart';
+import 'package:firebase_logins/ui/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() async{
@@ -16,13 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-            backgroundColor: Colors.blueGrey,
-            foregroundColor: Colors.white
-        ),
-        scaffoldBackgroundColor: Colors.grey[200],
-      ),
+      theme: AppTheme.instance.theme,
       home: LoginPage(),
     );
   }
