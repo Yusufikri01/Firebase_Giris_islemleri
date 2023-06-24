@@ -26,11 +26,6 @@ class Operation {
           "password": password.text.trim(),
         });
       });
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
-      );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showDialog(
@@ -68,9 +63,7 @@ class Operation {
               email: email.text.trim(), password: password.text.trim());
       user = userCredential.user;
 
-      if (user != null) {
-
-      }
+      if (user != null) {}
     } on FirebaseAuthException catch (e) {
       showDialog(
           context: context,
@@ -123,9 +116,6 @@ class Operation {
   }
 
   Future<void> SignOut(BuildContext context) async {
-    return await FirebaseAuth.instance.signOut().then((value) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginPage()));
-    });
+    return await FirebaseAuth.instance.signOut().then((value) {});
   }
 } // class şeyi
