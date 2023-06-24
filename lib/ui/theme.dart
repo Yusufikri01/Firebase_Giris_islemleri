@@ -18,7 +18,7 @@ class AppTheme {
   AppTheme.init();
 
   ThemeData get theme => ThemeData(
-      scaffoldBackgroundColor: _colorschemes.white, appBarTheme: _appBarTheme);
+      scaffoldBackgroundColor: _colorschemes.grey, appBarTheme: _appBarTheme);
 
   AppBarTheme get _appBarTheme => AppBarTheme(
       elevation: 0,

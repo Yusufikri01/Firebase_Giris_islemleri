@@ -1,4 +1,3 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_logins/Pages/LoginPage.dart';
 import 'package:firebase_logins/ui/theme.dart';

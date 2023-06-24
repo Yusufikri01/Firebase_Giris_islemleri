@@ -20,8 +20,10 @@ class ColorSchemes {
     'yellow': 'FFE903',
     'black': '323232',
     'white': 'EAEAEA',
-    'grey': '545454',
+    'grey': 'E0E0E0',
     'lightgrey': '888888',
+
+
   };
 
   Color get blue => HexColor.fromHex(_colors['blue']!);
