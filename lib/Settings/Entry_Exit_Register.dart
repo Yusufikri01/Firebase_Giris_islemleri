@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_logins/Pages/HomePage.dart';
 import 'package:firebase_logins/Pages/LoginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -70,8 +69,7 @@ class Operation {
       user = userCredential.user;
 
       if (user != null) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage(user)));
+
       }
     } on FirebaseAuthException catch (e) {
       showDialog(
