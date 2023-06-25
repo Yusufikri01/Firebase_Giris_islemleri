@@ -5,15 +5,15 @@ import 'package:firebase_logins/Widget/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function()? onTap;
-  const Login({required this.onTap, Key? key}) : super(key: key);
+  const Register(this.onTap,{Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
 
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
@@ -96,9 +96,9 @@ class _LoginState extends State<Login> {
                     children: [
                       Expanded(
                           child: Divider(
-                        thickness: 0.9,
-                        color: Colors.grey[400],
-                      )),
+                            thickness: 0.9,
+                            color: Colors.grey[400],
+                          )),
                       Text(
                         "Or Continue With",
                         style: TextStyle(
@@ -107,9 +107,9 @@ class _LoginState extends State<Login> {
                       ),
                       Expanded(
                           child: Divider(
-                        thickness: 0.9,
-                        color: Colors.grey[400],
-                      )),
+                            thickness: 0.9,
+                            color: Colors.grey[400],
+                          )),
                     ],
                   ),
                 ),
@@ -133,9 +133,8 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Register now",
                           style: TextStyle(
-                            color: Colors.blue[600],
-                            fontWeight: FontWeight.bold,
-                          ),
+                              color: Colors.blue[600],
+                              fontWeight: FontWeight.bold),
                         ),
                       )
                     ],
