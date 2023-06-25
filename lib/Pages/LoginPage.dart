@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_logins/Pages/RegisterPage.dart';
 import 'package:firebase_logins/Widget/my_button.dart';
 import 'package:firebase_logins/Widget/my_container.dart';
 import 'package:firebase_logins/Widget/my_text_field.dart';
@@ -6,15 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class Login extends StatefulWidget {
-  final Function()? onTap;
-  const Login({required this.onTap, Key? key}) : super(key: key);
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
-
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
 
@@ -89,7 +88,7 @@ class _LoginState extends State<Login> {
                 ),
                 MyButton(() {
                   SignUserIn();
-                }),
+                }, "Sign In"),
                 Padding(
                   padding: context.padding.paddingNormal,
                   child: Row(
@@ -129,7 +128,12 @@ class _LoginState extends State<Login> {
                     children: [
                       const Text("Not a member?  "),
                       GestureDetector(
-                        onTap: widget.onTap,
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Register()));
+                        },
                         child: Text(
                           "Register now",
                           style: TextStyle(

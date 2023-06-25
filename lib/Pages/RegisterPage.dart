@@ -6,37 +6,44 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class Register extends StatefulWidget {
-  final Function()? onTap;
-  const Register(this.onTap,{Key? key}) : super(key: key);
+  const Register({Key? key}) : super(key: key);
 
   @override
   State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+  final confirmpasswordcontroller = TextEditingController();
 
-  void SignUserIn() async {
+  void SignUserUp() async {
     showDialog(
-        context: context,
-        builder: (context) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailcontroller.text, password: passwordcontroller.text);
-
-      Navigator.pop(context);
+      if (passwordcontroller.text == confirmpasswordcontroller.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailcontroller.text,
+          password: passwordcontroller.text,
+        );
+        Navigator.pop(context);
+      } else {
+        Navigator.pop(context);
+        showErrorMessage("Passwords don't match");
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       showErrorMessage(e.code);
     }
     emailcontroller.text = "";
     passwordcontroller.text = "";
+    confirmpasswordcontroller.text = "";
   }
 
   void showErrorMessage(String error) {
@@ -69,36 +76,22 @@ class _RegisterState extends State<Register> {
                     size: 120,
                   ),
                 ),
-                Text(
-                  "WELCOME BACK!",
-                  style: context.general.textTheme.headlineMedium,
-                ),
+                Text("Let's create an account for you",style: TextStyle(color: Colors.grey[600],fontSize: 16),),
                 MyWidget(emailcontroller, "Email", false),
                 MyWidget(passwordcontroller, "Password", true),
-                Padding(
-                  padding: context.padding.paddingNormal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "Forgot Password?",
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
-                ),
+                MyWidget(confirmpasswordcontroller, "Confirm Password", true),
                 MyButton(() {
-                  SignUserIn();
-                }),
+                  SignUserUp();
+                }, "Sign Up"),
                 Padding(
                   padding: context.padding.paddingNormal,
                   child: Row(
                     children: [
                       Expanded(
                           child: Divider(
-                            thickness: 0.9,
-                            color: Colors.grey[400],
-                          )),
+                        thickness: 0.9,
+                        color: Colors.grey[400],
+                      )),
                       Text(
                         "Or Continue With",
                         style: TextStyle(
@@ -107,9 +100,9 @@ class _RegisterState extends State<Register> {
                       ),
                       Expanded(
                           child: Divider(
-                            thickness: 0.9,
-                            color: Colors.grey[400],
-                          )),
+                        thickness: 0.9,
+                        color: Colors.grey[400],
+                      )),
                     ],
                   ),
                 ),
@@ -127,11 +120,11 @@ class _RegisterState extends State<Register> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Not a member?  "),
+                      const Text("Alredy have an Account  "),
                       GestureDetector(
-                        onTap: widget.onTap,
+                        onTap: () {},
                         child: Text(
-                          "Register now",
+                          "Login now",
                           style: TextStyle(
                               color: Colors.blue[600],
                               fontWeight: FontWeight.bold),

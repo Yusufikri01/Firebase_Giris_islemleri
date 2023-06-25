@@ -4,7 +4,8 @@ import 'package:kartal/kartal.dart';
 
 class MyButton extends StatelessWidget {
   Function()? onTap;
-  MyButton(this.onTap, {Key? key}) : super(key: key);
+  String text;
+  MyButton(this.onTap,this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class MyButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "Sign In",
+            text,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
